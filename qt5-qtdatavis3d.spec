@@ -1,15 +1,17 @@
 %define major 5
 %define libname %mklibname qt5datavis3d %{major}
 %define devname %mklibname qt5datavis3d -d
-%define beta beta3
+%define beta beta4
 
 Name:	qt5-qtdatavis3d
 Version: 5.10.0
 %if "%{beta}" != "%{nil}"
-Source0: http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/qtdatavis3d-everywhere-src-%{version}.tar.xz
+%define qttarballdir qtdatavis3d-everywhere-src-%{version}-%{beta}
+Source0: http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 Release: 0.%{beta}.1
 %else
-Source0: http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/qtdatavis3d-opensource-src-%{version}.tar.xz
+%define qttarballdir qtdatavis3d-opensource-src-%{version}
+Source0: http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 Release: 1
 %endif
 Summary: Qt 3D data visualization library
@@ -52,11 +54,7 @@ BuildRequires: pkgconfig(Qt5Widgets)
 Example code for the %{name} library
 
 %prep
-%if "%{beta}" != ""
-%setup -qn qtdatavis3d-everywhere-src-%{version}
-%else
-%setup -qn qtdatavis3d-opensource-src-%{version}
-%endif
+%setup -qn %{qttarballdir}
 %qmake_qt5 *.pro
 
 %build
