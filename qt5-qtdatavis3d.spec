@@ -1,10 +1,10 @@
 %define major 5
 %define libname %mklibname qt5datavis3d %{major}
 %define devname %mklibname qt5datavis3d -d
-%define beta %{nil}
+%define beta rc3
 
 Name: qt5-qtdatavis3d
-Version: 5.12.3
+Version: 5.13.0
 %if "%{beta}" != "%{nil}"
 %define qttarballdir qtdatavis3d-everywhere-src-%{version}-%{beta}
 Source0: http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
