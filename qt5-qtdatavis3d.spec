@@ -1,7 +1,7 @@
 %define major 5
 %define libname %mklibname qt5datavis3d %{major}
 %define devname %mklibname qt5datavis3d -d
-%define beta beta1
+%define beta beta2
 
 Name: qt5-qtdatavis3d
 Version: 5.15.0
